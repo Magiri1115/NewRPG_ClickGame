@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dpfbkajguvm28"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_3j42r"]
+[ext_resource type="Texture2D" uid="uid://dddlmgcf2sr3s" path="res://assets/images/bg.png" id="1_vqino"]
+[ext_resource type="PackedScene" uid="uid://bs346dye2hhtp" path="res://scenes/Tako.tscn" id="2_ctyf0"]
+[ext_resource type="FontFile" uid="uid://dnwyucqnb6phj" path="res://assets/fonts/Xolonium-Regular.ttf" id="3_ym53d"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eij0p"]
+font = ExtResource("3_ym53d")
+font_size = 39
+font_color = Color(1, 0.470588, 0.0941176, 1)
+outline_size = 2
+outline_color = Color(1, 1, 0.941176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_05cj0"]
+font = ExtResource("3_ym53d")
+font_size = 45
+font_color = Color(1, 0.121569, 1, 1)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3j42r")
+
+[node name="Bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_vqino")
+centered = false
+
+[node name="Tako" parent="." instance=ExtResource("2_ctyf0")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="timeLabel" type="Label" parent="CanvasLayer"]
+offset_left = 607.0
+offset_top = 2.0
+offset_right = 799.0
+offset_bottom = 65.0
+text = "00.00秒"
+label_settings = SubResource("LabelSettings_eij0p")
+
+[node name="gameoverLabel" type="Label" parent="CanvasLayer"]
+offset_left = 193.0
+offset_top = 73.0
+offset_right = 615.0
+offset_bottom = 325.0
+text = "game over
+
+Press key Q"
+label_settings = SubResource("LabelSettings_05cj0")
+
+[connection signal="game_over" from="Tako" to="." method="_on_tako_game_over"]
